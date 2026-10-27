@@ -1,10 +1,10 @@
-<!-- /fit-to-profit-confirmed: post-registration page for the Passion to Profit challenge (16-20 Nov 2026).
+<!-- /ftp-thankyou: post-registration page for the Passion to Profit challenge (16-20 Nov 2026).
      Step 1: placeholder buttons (calendar, community). Set the real links in LINKS at the bottom of the file.
      Step 2: a five-question survey, one question at a time. Answers post to /survey-capture, which
      appends a row to the "Survey Responses" table in the Webinar Base (Airtable); see api/survey.js.
-     The row's Source is "fit-to-profit-challenge" and the answers are written, one per line, into
+     The row's Source is "passion-to-profit-challenge" and the answers are written, one per line, into
      "Anything else" (and in full, as JSON, into "Raw payload").
-     Point the HubSpot registration form's redirect at this page. Unlinked and noindex. -->
+     Point the HubSpot registration form's redirect at this page (/ftp-thankyou). Unlinked and noindex. -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -246,7 +246,7 @@
     community: ""   // challenge community invite link
   };
   var CAPTURE_URL = "/survey-capture";            // appends a row to the Survey Responses table (Airtable)
-  var SOURCE = "fit-to-profit-challenge";         // the "Source" value Matt can filter on
+  var SOURCE = "passion-to-profit-challenge";         // the "Source" value Matt can filter on
 
   document.querySelectorAll(".js-link").forEach(function(a){
     var url = LINKS[a.dataset.key];
