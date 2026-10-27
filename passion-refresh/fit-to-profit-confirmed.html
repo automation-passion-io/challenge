@@ -43,6 +43,10 @@
   .wrap{width:min(92%,880px);margin:0 auto;position:relative}
   .blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;opacity:.8}
 
+  .topbar{background:#f42250;color:#fff;text-align:center;font:700 14px/1.3 var(--sans);letter-spacing:.02em;padding:13px 16px;text-transform:uppercase}
+  .starts{margin-top:22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:16px}
+  .starts .clock{font:500 26px/1 var(--display);letter-spacing:.02em;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.35);border-radius:99px;padding:9px 18px;font-variant-numeric:tabular-nums}
+
   /* hero */
   .hero{background:var(--grad-scale);color:#fff;padding:26px 0 150px;position:relative;overflow:hidden;border-radius:0 0 56px 56px}
   .hero .b1{width:480px;height:480px;background:var(--violet);right:-140px;top:-160px}
@@ -126,12 +130,14 @@
 </head>
 <body>
 
+<div class="topbar" role="note">Keep this page open until you have finished both steps</div>
 <header class="hero">
   <i class="blob b1"></i><i class="blob b2"></i>
   <div class="wrap">
     <div class="nav"><img src="/media/passion-logo-white.svg" alt="Passion.io"></div>
     <h1>You're in. <em>Two quick steps</em> to get set up.</h1>
     <p class="sub">Fit to Profit starts Monday 16 Nov, live at 12:00 ET.</p>
+    <div class="starts"><span>Day 1 goes live in</span><span class="clock" id="clock" aria-live="off">--d --h --m --s</span></div>
     <div class="progress">
       <div class="lab"><span id="plab">Step 1 of 2: save the dates</span><span id="ppct">34%</span></div>
       <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="34" id="pbar"><i id="pfill"></i></div>
@@ -334,6 +340,17 @@
     try{ window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "fit_to_profit_survey_complete" }); }catch(e){}
   }
   show(0);
+
+  /* countdown to Day 1: Mon 16 Nov 2026, 12:00 ET (17:00 UTC) */
+  (function(){
+    var start = Date.UTC(2026,10,16,17,0,0), el = document.getElementById("clock");
+    function pad(n){ return String(n).padStart(2,"0"); }
+    function tick(){
+      var s = Math.max(0, Math.floor((start - Date.now())/1000));
+      el.textContent = Math.floor(s/86400) + "d " + pad(Math.floor(s%86400/3600)) + "h " + pad(Math.floor(s%3600/60)) + "m " + pad(s%60) + "s";
+    }
+    tick(); setInterval(tick,1000);
+  })();
 
   /* no widows: glue the last two words of short text blocks together */
   document.querySelectorAll("h1,h2,h3,p,li").forEach(function(el){
