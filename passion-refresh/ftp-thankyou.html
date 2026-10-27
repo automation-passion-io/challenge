@@ -1,9 +1,9 @@
 <!-- /ftp-thankyou: post-registration page for the Passion to Profit challenge (16-20 Nov 2026).
      Step 1: placeholder buttons (calendar, community). Set the real links in LINKS at the bottom of the file.
-     Step 2: a five-question survey, one question at a time. Answers post to /survey-capture, which
-     appends a row to the "Survey Responses" table in the Webinar Base (Airtable); see api/survey.js.
-     The row's Source is "passion-to-profit-challenge" and the answers are written, one per line, into
-     "Anything else" (and in full, as JSON, into "Raw payload").
+     Step 2: a five-question survey, one question at a time. Answers post to /ftp-survey-capture
+     (api/ftp-survey.js), which appends one row per response to the Google Sheet "Passion to Profit:
+     survey responses" through an Apps Script web app. Until that is configured the route falls back
+     to the Airtable Survey Responses table, so no response is lost.
      Point the HubSpot registration form's redirect at this page (/ftp-thankyou). Unlinked and noindex. -->
 <!doctype html>
 <html lang="en">
@@ -245,7 +245,7 @@
     apple: "",      // .ics file (also works for Apple Calendar)
     community: ""   // challenge community invite link
   };
-  var CAPTURE_URL = "/survey-capture";            // appends a row to the Survey Responses table (Airtable)
+  var CAPTURE_URL = "/ftp-survey-capture";        // appends a row to the "Passion to Profit: survey responses" Google Sheet (api/ftp-survey.js)
   /* Meta pixel (161741784166319, loaded by the site tracking): CompleteRegistration once per visitor session */
   (function(){
     var key = "ptp_cr_sent";
@@ -262,7 +262,6 @@
     }
   })();
 
-  var SOURCE = "passion-to-profit-challenge";         // the "Source" value Matt can filter on
 
   document.querySelectorAll(".js-link").forEach(function(a){
     var url = LINKS[a.dataset.key];
@@ -332,14 +331,10 @@
   function submit(){
     if(sending) return;
     sending = true; next.disabled = true; next.textContent = "Sending..."; err.textContent = "";
-    var lines = qs.map(function(q){ return q.dataset.label + ": " + (answers[q.dataset.key] || ""); });
     var hutk = (document.cookie.match(/hubspotutk=([^;]+)/) || [])[1];
     var payload = {
-      fields: [
-        { name: "survey_notes", value: lines.join("\n") },
-        { name: "survey_source", value: SOURCE }
-      ],
-      context: { pageUri: location.href, pageName: document.title, hutk: hutk, answers: answers }
+      answers: answers,
+      context: { pageUri: location.href, hutk: hutk }
     };
     fetch(CAPTURE_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
       .then(function(r){ if(!r.ok) throw new Error("status " + r.status); finish(); })
