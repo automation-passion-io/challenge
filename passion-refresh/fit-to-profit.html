@@ -156,6 +156,7 @@
   .final{background:var(--grad-scale);color:#fff;text-align:center}
   .final h2{color:#fff}.final .lead{color:rgba(255,255,255,.88)}
   .final .btn{background:#fff;color:var(--ink)}.final .btn:hover{background:var(--ink);color:#fff}
+  .formcard{max-width:520px;margin:40px auto 0;background:#fff;color:var(--ink);border-radius:28px;padding:30px;text-align:left;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
   footer{background:var(--black);color:#b8bbcb;padding:48px 0;font-size:12.5px;text-align:center}
   footer img{height:22px;margin:0 auto 20px}
   footer p{max-width:760px;margin:0 auto 16px}
@@ -401,7 +402,8 @@
   <div class="wrap">
     <h2>Ready to go from Fit to Profit?</h2>
     <p class="lead">Join the free 5-day live challenge, 16–20 Nov, and build a business that fits your life.</p>
-    <div class="cta"><a class="btn js-register" href="#register">Save my free seat →</a><small style="color:rgba(255,255,255,.8)">Free · live at 12:00 ET · 24-hour replays</small></div>
+    <div class="formcard"><div id="hs-form"></div></div>
+    <p class="fine" style="color:rgba(255,255,255,.8)">Free · live at 12:00 ET · 24-hour replays</p>
   </div>
 </section>
 
@@ -416,11 +418,13 @@
 
 <div class="sticky"><a class="btn red js-register" href="#register">Save my free seat →</a></div>
 
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
 <script>
-  // TODO: set to the live registration link (WebinarGeek / checkout). Until then buttons scroll to the final CTA.
-  var REGISTER_URL = "";
-  document.querySelectorAll(".js-register").forEach(function(a){
-    if(REGISTER_URL){a.href=REGISTER_URL}
+  hbspt.forms.create({
+    portalId: "24480413",
+    formId: "be95d91d-0e4d-4ded-8f93-a2d51f111e4d",
+    region: "na1",
+    target: "#hs-form"
   });
 
   // Day 1 goes live Mon 16 Nov 2026, 12:00 ET (17:00 UTC)
