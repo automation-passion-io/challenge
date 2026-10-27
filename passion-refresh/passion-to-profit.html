@@ -549,11 +549,18 @@
 
   // HubSpot forms (explicit https so it also loads from a local file or preview)
   (function(){
-    var holders = document.querySelectorAll(".hsf");
+    var holders = document.querySelectorAll(".hsf"), leadSent = false;
+    /* Meta pixel (161741784166319, loaded by the site tracking): one Lead per page view, however many of the three forms is used */
+    function trackLead(){
+      if(leadSent) return; leadSent = true;
+      try{ if(typeof window.fbq === "function") window.fbq("track", "Lead"); }catch(e){}
+      try{ window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: "ptp_registration_submitted" }); }catch(e){}
+    }
     function build(){
       holders.forEach(function(el, i){
         el.id = "hs-form-" + i;
-        hbspt.forms.create({portalId:"24480413", formId:"be95d91d-0e4d-4ded-8f93-a2d51f111e4d", region:"na1", target:"#hs-form-" + i});
+        hbspt.forms.create({portalId:"24480413", formId:"be95d91d-0e4d-4ded-8f93-a2d51f111e4d", region:"na1", target:"#hs-form-" + i,
+          onFormSubmitted: trackLead});
       });
     }
     function fail(){

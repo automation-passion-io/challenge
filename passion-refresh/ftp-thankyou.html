@@ -54,7 +54,7 @@
   .nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:56px}
   .nav img{height:28px}
   .hero h1{font-size:clamp(46px,9vw,92px);letter-spacing:-.035em;word-spacing:.06em;line-height:.95}
-  .hero h1 em{font-style:normal;background:linear-gradient(95deg,#fff3c8,#ffb3e6 55%,#e0c0ff);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+  .hero h1 em{font-style:normal}
   .hero p.sub{font:500 clamp(19px,2.6vw,26px)/1.2 var(--display);letter-spacing:-.015em;margin-top:22px;max-width:640px}
   .progress{margin-top:34px;max-width:560px}
   .progress .lab{display:flex;justify-content:space-between;font-size:14px;margin-bottom:10px}
@@ -106,15 +106,15 @@
   .done h3{font-size:clamp(32px,5vw,48px)}
   .done p{margin-top:12px;color:#3a3d4c;font-size:18px;max-width:560px}
 
-  .next-up{margin-top:22px;border-radius:32px;padding:30px 34px;background:var(--grad-bloom);color:var(--ink)}
+  .next-up{margin-top:22px;border-radius:32px;padding:30px 34px;background:var(--grad-scale);color:#fff}
   .next-up h3{font-size:26px;margin-bottom:12px}
   .next-up ul{list-style:none;display:grid;gap:10px;font-size:17px}
   .next-up li{padding-left:24px;position:relative}
-  .next-up li::before{content:"";position:absolute;left:0;top:.5em;width:11px;height:11px;border-radius:50%;background:var(--ink)}
+  .next-up li::before{content:"";position:absolute;left:0;top:.5em;width:11px;height:11px;border-radius:50%;background:#fff}
 
   footer{background:var(--black);color:#c9ccd9;padding:44px 0;font-size:13px;margin-top:0}
   footer img{height:24px;margin-bottom:18px}
-  footer a{color:inherit}
+  footer a{color:inherit;display:inline-block;padding:14px 0;margin-right:22px}
   footer a{margin-right:18px}
 
   @media(max-width:720px){
@@ -246,6 +246,22 @@
     community: ""   // challenge community invite link
   };
   var CAPTURE_URL = "/survey-capture";            // appends a row to the Survey Responses table (Airtable)
+  /* Meta pixel (161741784166319, loaded by the site tracking): CompleteRegistration once per visitor session */
+  (function(){
+    var key = "ptp_cr_sent";
+    try{ if(sessionStorage.getItem(key)) return; }catch(e){}
+    function fire(){
+      try{ window.fbq("track", "CompleteRegistration"); sessionStorage.setItem(key, "1"); }catch(e){}
+    }
+    if(typeof window.fbq === "function") fire();
+    else{                                   // the site tracking loads fbq asynchronously
+      var tries = 0, iv = setInterval(function(){
+        if(typeof window.fbq === "function"){ clearInterval(iv); fire(); }
+        else if(++tries > 40) clearInterval(iv);   // give up after ~10s
+      }, 250);
+    }
+  })();
+
   var SOURCE = "passion-to-profit-challenge";         // the "Source" value Matt can filter on
 
   document.querySelectorAll(".js-link").forEach(function(a){
