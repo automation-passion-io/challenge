@@ -162,7 +162,7 @@
   .proof{background:var(--grad-scale);color:#fff}
   .proof .b1{width:500px;height:500px;background:var(--violet);right:-150px;top:-150px}
   .proof h2{max-width:800px}
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:64px}
+  .stats{display:flex;justify-content:space-between;gap:22px;margin-top:64px}
   .stat b{display:block;font:500 clamp(60px,9vw,120px)/.9 var(--display);letter-spacing:-.05em}
   .stat span{display:block;margin-top:10px;font-size:18px}
   .then-now{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:56px}
@@ -248,7 +248,8 @@
     .who{margin-top:-32px;padding-top:104px}
     .final{border-radius:32px 32px 0 0;margin-top:-32px;padding-top:104px}
     .hero-grid,.band-grid,.final-grid,.host-grid{grid-template-columns:1fr;gap:40px}
-    .stages,.stats{grid-template-columns:1fr}
+    .stages{grid-template-columns:1fr}
+    .stats{flex-direction:column}
     .hero h1{font-size:clamp(56px,17vw,110px)}
     .final h2{font-size:clamp(40px,11vw,72px)}
     .split,.vsgrid,.then-now{grid-template-columns:1fr}
