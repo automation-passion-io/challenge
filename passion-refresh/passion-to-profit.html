@@ -62,9 +62,6 @@
 
   /* ---------- HERO STAGE ---------- */
   .hero{background:linear-gradient(180deg,#ffb8e2 0%,#ff8fcb 48%,#f0508a 100%);padding:26px 0 90px;border-radius:0 0 56px 56px;z-index:2;overflow:hidden;position:relative}
-  .beams{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-  .beam{position:absolute;top:-6%;left:var(--x);width:min(30vw,380px);height:88%;transform-origin:50% 0;transform:translateX(-50%) rotate(var(--r));background:linear-gradient(180deg,var(--c) 0%,transparent 88%);clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);filter:blur(9px);opacity:.22;animation:sway var(--t,9s) ease-in-out var(--d,0s) infinite alternate}
-  @keyframes sway{from{transform:translateX(-50%) rotate(var(--r))}to{transform:translateX(-50%) rotate(calc(var(--r) + 7deg))}}
   .lamp{position:absolute;top:-8px;left:var(--x);width:46px;height:20px;transform:translateX(-50%);border-radius:0 0 30px 30px;background:#fff;box-shadow:0 0 30px 10px var(--c),0 0 70px 24px var(--c);opacity:.9}
   .arches{position:absolute;inset:0;pointer-events:none;overflow:hidden;--w:min(1760px,94vw);--s:min(240px,12.5vw)}
   .arch{position:absolute;left:50%;transform:translateX(-50%);height:3000px;border-radius:9999px 9999px 0 0;border:2px solid rgba(255,255,255,.9);border-bottom:0;box-shadow:0 0 90px rgba(255,255,255,.35)}
@@ -87,9 +84,6 @@
   .host{position:relative;width:min(330px,70%);height:300px;margin:14px auto 0}
   .host .pic{position:absolute;inset:0;overflow:hidden;z-index:1}
   .host .chip{z-index:2}
-  .spot{position:absolute;left:50%;top:-18px;width:0;height:0;z-index:0;pointer-events:none}
-  .spot::before{content:"";position:absolute;left:-34px;top:-8px;width:68px;height:16px;border-radius:0 0 34px 34px;background:#fff;box-shadow:0 0 34px 12px rgba(255,255,255,.95),0 0 80px 30px #ff76d6}
-  .spot .beam{left:0;top:0;width:190px;height:420px;opacity:.7;filter:blur(7px)}
   .countwrap{position:relative;z-index:3}
   .host img{position:absolute;left:0;top:0;width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(244,34,80,.3));-webkit-mask-image:linear-gradient(#000 64%,transparent 98%);mask-image:linear-gradient(#000 64%,transparent 98%)}
   .chip{position:absolute;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border:1.5px solid var(--line);border-radius:18px;padding:12px 16px;font:500 14px/1.2 var(--sans);box-shadow:0 20px 40px -22px rgba(244,34,80,.45);animation:bob 5s ease-in-out infinite alternate}
@@ -98,6 +92,7 @@
   @keyframes bob{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
   .chip.a{left:-36%;top:18%}.chip.b{right:-34%;top:50%;animation-delay:-2s}
   .hero h1{position:relative;margin:0;font-size:clamp(40px,4.7vw,66px);letter-spacing:-.04em;line-height:.95;text-align:left}
+  .hero .sub .more{display:block;margin-top:4px}
   .hero .acc{background:linear-gradient(95deg,#a30f38,#f42250);-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero h1 em{font-style:normal}
   .hero .sub{text-align:left;font:500 clamp(18px,1.8vw,24px)/1.25 var(--display);letter-spacing:-.015em;margin:16px 0 0;max-width:560px}
@@ -312,7 +307,7 @@
     .pad{padding:72px 0}
     .hero{border-radius:0 0 32px 32px;padding:14px 0 48px}
     .logo-lockup img{height:48px}
-    .hero-grid{grid-template-columns:36% 1fr;grid-template-areas:"host pill" "host title" "form form" "sub sub" "count count";gap:10px 14px;margin-top:12px;align-items:center}
+    .hero-grid{grid-template-columns:36% 1fr;grid-template-areas:"host pill" "host title" "sub sub" "form form" "count count";gap:10px 14px;margin-top:12px;align-items:center}
     .hero-left{display:contents}
     .chip{display:none}
     .livepill .lg{display:none}
@@ -320,15 +315,17 @@
     .hero h1{grid-area:title;align-self:start;font-size:clamp(25px,7.4vw,36px)}
     .host{grid-area:host;width:100%;height:150px;margin:0}
     .hero-right{grid-area:form}
-    .hero-right .formcard{max-width:none;margin:0}
-    .hero .sub{grid-area:sub;font-size:17px;margin:8px 0 0}
+    .hero-right .formcard{max-width:none;margin:0;padding:16px 16px 6px;border-radius:24px}
+    .hero-right .formcard h3{font-size:20px;margin-bottom:6px}
+    .hero-right .formcard p{display:none}
+    .hero-right .hsf{zoom:.84}
+    .hero .sub{grid-area:sub;font-size:16px;margin:2px 0 0;text-align:center}
+    .hero .sub .more{display:none}
     .countwrap{grid-area:count}
     .count{justify-content:center}.count-note{text-align:center;margin:6px 0}
     .strip .more,.strip a{display:none}
     .arches{--w:132vw;--s:11vw}
     .arch.a1{top:30px}.arch.a2{top:calc(30px + var(--s))}.arch.a3{top:calc(30px + 2*var(--s))}
-    .spot{top:6px}.spot::before{display:none}
-    .spot .beam{width:100px;height:230px}
     .posgrid,.band-grid,.final-grid{grid-template-columns:1fr;gap:40px}
     .stages,.split,.vsgrid{grid-template-columns:1fr}
     .stage{min-height:0}
@@ -346,7 +343,7 @@
     .then-now{grid-template-columns:1fr}
     .day .num{font-size:128px}
   }
-  @media(prefers-reduced-motion:reduce){.beam,.chip,.floatnote,.dust,.ticker .track,.co-track,.livepill i,.billboard .ribbon div{animation:none}.co-row{overflow-x:auto}}
+  @media(prefers-reduced-motion:reduce){.chip,.floatnote,.dust,.ticker .track,.co-track,.livepill i,.billboard .ribbon div{animation:none}.co-row{overflow-x:auto}}
 </style>
 <script src="/site-chrome.js" data-chrome="off" defer></script>
 </head>
@@ -393,7 +390,7 @@
       <div class="hero-left">
         <div class="livepill"><i></i><span class="lg">Live virtual event &middot;&nbsp;</span>Nov 16 to 20</div>
         <h1><span class="acc">Stop</span> trading your time for money.</h1>
-        <p class="sub">Sell what you know, not your hours. Five days live with Matt and the Passion team.</p>
+        <p class="sub">Sell what you know, not your hours.<span class="more"> Five days live with Matt and the Passion team.</span></p>
         <div class="countwrap">
           <p class="count-note">Day 1 goes live in</p>
           <div class="count" aria-label="Time until the challenge starts">
@@ -401,12 +398,6 @@
     </div>
         </div>
         <div class="host">
-          <div class="spot" aria-hidden="true">
-            <i class="beam" style="--r:-34deg;--c:#fff;--t:10s"></i>
-            <i class="beam" style="--r:-14deg;--c:#fff3c8;--t:8s;--d:-2s"></i>
-            <i class="beam" style="--r:14deg;--c:#ffe3f5;--t:9s;--d:-4s"></i>
-            <i class="beam" style="--r:34deg;--c:#fff;--t:11s;--d:-1s"></i>
-          </div>
           <div class="pic"><img src="/media/ptp/matt-cutout.png" alt="Matt Bellmann, founder of Passion.io, your host" width="891" height="1024" fetchpriority="high"></div>
           <div class="chip a"><span class="ic"><svg class="i"><use href="#i-users"/></svg></span><span><b>15,000+</b>business owners</span></div>
           <div class="chip b"><span class="ic"><svg class="i"><use href="#i-phone"/></svg></span><span><b>3M+</b>people in their apps</span></div>
@@ -756,7 +747,7 @@
       ["Grow fast, stay involved, and keep everything efficient and easy to manage.","Nikki Bianco","CEO, Slice Squad Consulting",W+"69734aaf8c26285fb2e14598_coach8.webp"],
       ["I'm in awe. Spectacular.","Joseph McClendon III","Performance Specialist",W+"69734a852e20c0d96c013191_coach7.webp"]
     ];
-    function card(c){ return '<div class="co-card"><div class="co-photo"><img loading="lazy" src="'+c[3]+'" alt="'+c[1]+'"></div><div class="co-body"><div class="co-q">“'+c[0]+'”</div><div><div class="co-n">'+c[1]+'</div><div class="co-r">'+c[2]+'</div></div></div></div>'; }
+    function card(c){ return '<div class="co-card"><div class="co-photo"><img loading="eager" decoding="async" src="'+c[3]+'" alt="'+c[1]+'"></div><div class="co-body"><div class="co-q">“'+c[0]+'”</div><div><div class="co-n">'+c[1]+'</div><div class="co-r">'+c[2]+'</div></div></div></div>'; }
     var a = CO.slice(0,4), b = CO.slice(4);
     document.getElementById("coA").innerHTML = '<div class="co-track">' + a.map(card).join("") + a.map(card).join("") + a.map(card).join("") + a.map(card).join("") + '</div>';
     document.getElementById("coB").innerHTML = '<div class="co-track">' + b.map(card).join("") + b.map(card).join("") + b.map(card).join("") + b.map(card).join("") + '</div>';
