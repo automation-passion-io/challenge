@@ -56,49 +56,59 @@
   .pad{padding:110px 0}
 
   /* ---------- top strip ---------- */
-  .strip{width:100%;margin:0;background:var(--grad-flame-h);text-align:center;font:600 14px/1.3 var(--sans);letter-spacing:.02em;padding:12px 16px;position:relative;z-index:6}
+  .stripwrap{overflow:hidden;position:relative;z-index:6}
+  .strip{width:calc(100% + 4px);margin:0 -2px;background:var(--grad-flame-h);text-align:center;font:600 14px/1.3 var(--sans);letter-spacing:.02em;padding:12px 16px;position:relative;z-index:6}
   .strip a{text-decoration:underline;text-underline-offset:3px;margin-left:10px;white-space:nowrap}
 
   /* ---------- HERO STAGE ---------- */
-  .hero{background:radial-gradient(75% 60% at 50% 0%,#ffd6ee 0%,#f1e3ff 42%,#fbf9fc 88%);padding:34px 0 150px;border-radius:0 0 56px 56px;z-index:2;overflow:hidden;position:relative}
+  .hero{background:linear-gradient(180deg,#ffd9ee 0%,#ffc0e4 48%,#ff9fd2 100%);padding:26px 0 90px;border-radius:0 0 56px 56px;z-index:2;overflow:hidden;position:relative}
   .beams{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-  .beam{position:absolute;top:-6%;left:var(--x);width:min(30vw,380px);height:88%;transform-origin:50% 0;transform:translateX(-50%) rotate(var(--r));background:linear-gradient(180deg,var(--c) 0%,transparent 88%);clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);filter:blur(9px);opacity:.42;animation:sway var(--t,9s) ease-in-out var(--d,0s) infinite alternate}
+  .beam{position:absolute;top:-6%;left:var(--x);width:min(30vw,380px);height:88%;transform-origin:50% 0;transform:translateX(-50%) rotate(var(--r));background:linear-gradient(180deg,var(--c) 0%,transparent 88%);clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);filter:blur(9px);opacity:.22;animation:sway var(--t,9s) ease-in-out var(--d,0s) infinite alternate}
   @keyframes sway{from{transform:translateX(-50%) rotate(var(--r))}to{transform:translateX(-50%) rotate(calc(var(--r) + 7deg))}}
   .lamp{position:absolute;top:-8px;left:var(--x);width:46px;height:20px;transform:translateX(-50%);border-radius:0 0 30px 30px;background:#fff;box-shadow:0 0 30px 10px var(--c),0 0 70px 24px var(--c);opacity:.9}
-  .hex{position:absolute;left:50%;top:150px;width:min(1200px,150vw);transform:translateX(-50%);opacity:.6;pointer-events:none}
+  .arches{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .arch{position:absolute;left:50%;transform:translateX(-50%);height:2400px;border-radius:9999px 9999px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,150,214,.22) 42%,rgba(244,34,80,.12) 100%);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75)}
+  .arch.a1{top:56px;width:min(1750px,172vw)}
+  .arch.a2{top:176px;width:min(1260px,126vw);background:linear-gradient(180deg,rgba(255,255,255,.5) 0%,rgba(255,130,208,.26) 46%,rgba(244,34,80,.16) 100%)}
+  .arch.a3{top:306px;width:min(800px,82vw);background:linear-gradient(180deg,rgba(255,255,255,.42) 0%,rgba(255,110,200,.3) 50%,rgba(244,34,80,.2) 100%)}
   .floor{position:absolute;left:0;right:0;bottom:0;height:55%;background:radial-gradient(60% 100% at 50% 100%,rgba(244,34,80,.22),transparent 70%);pointer-events:none}
   .dust{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(2px 2px at 12% 30%,rgba(244,34,80,.45),transparent),radial-gradient(2px 2px at 82% 22%,rgba(186,118,255,.5),transparent),radial-gradient(1.5px 1.5px at 30% 60%,rgba(244,34,80,.4),transparent),radial-gradient(2px 2px at 70% 55%,rgba(255,73,32,.4),transparent),radial-gradient(1.5px 1.5px at 90% 70%,rgba(186,118,255,.45),transparent),radial-gradient(2px 2px at 8% 75%,rgba(244,34,80,.35),transparent);animation:twinkle 6s ease-in-out infinite alternate}
   @keyframes twinkle{from{opacity:.45}to{opacity:1}}
   .hero .wrap{z-index:3}
   .logo-lockup{display:flex;justify-content:center}
-  .logo-lockup img{height:clamp(66px,9vw,112px);width:auto}
-  .livepill{display:flex;width:max-content;max-width:100%;margin:22px auto 0;align-items:center;gap:10px;border:1.5px solid rgba(244,34,80,.4);background:rgba(244,34,80,.08);color:var(--ink);border-radius:99px;padding:8px 18px;font:600 13px var(--sans);letter-spacing:.08em;text-transform:uppercase}
+  .logo-lockup img{height:clamp(54px,6vw,76px);width:auto}
+  .livepill{display:flex;width:max-content;max-width:100%;margin:0 0 16px;align-items:center;gap:10px;border:1.5px solid rgba(244,34,80,.4);background:rgba(244,34,80,.08);color:var(--ink);border-radius:99px;padding:8px 18px;font:600 13px var(--sans);letter-spacing:.08em;text-transform:uppercase}
   .livepill i{width:9px;height:9px;border-radius:50%;background:#ff3b5c;box-shadow:0 0 0 0 rgba(255,59,92,.7);animation:ping 1.6s infinite}
   @keyframes ping{70%{box-shadow:0 0 0 10px rgba(255,59,92,0)}100%{box-shadow:0 0 0 0 rgba(255,59,92,0)}}
-  .host{position:relative;width:min(470px,82vw);margin:0 auto;aspect-ratio:891/1024;margin-top:6px}
-  .host img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 40px rgba(244,34,80,.28));-webkit-mask-image:linear-gradient(#000 46%,transparent 86%);mask-image:linear-gradient(#000 46%,transparent 86%)}
+  .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:start;margin-top:20px}
+  .hero-left{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+  .hero-right{min-width:0}
+  .hero-right .formcard{max-width:520px;margin-left:auto}
+  .host{position:relative;width:min(330px,70%);height:300px;margin:14px auto 0}
+  .host .pic{position:absolute;inset:0;overflow:hidden}
+  .host img{position:absolute;left:0;top:0;width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(244,34,80,.3));-webkit-mask-image:linear-gradient(#000 64%,transparent 98%);mask-image:linear-gradient(#000 64%,transparent 98%)}
   .chip{position:absolute;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border:1.5px solid var(--line);border-radius:18px;padding:12px 16px;font:500 14px/1.2 var(--sans);box-shadow:0 20px 40px -22px rgba(244,34,80,.45);animation:bob 5s ease-in-out infinite alternate}
   .chip b{display:block;font:500 24px/1 var(--display);letter-spacing:-.02em}
   .chip .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--grad-flame-h);color:#fff}
   @keyframes bob{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
-  .chip.a{left:-20%;top:14%}.chip.b{right:-20%;top:30%;animation-delay:-2s}.chip.c{left:-6%;top:47%;animation-delay:-3.5s}
-  .hero h1{position:relative;margin-top:-168px;font-size:clamp(44px,7.4vw,104px);letter-spacing:-.04em;line-height:.93;text-align:center}
+  .chip.a{left:-36%;top:18%}.chip.b{right:-34%;top:50%;animation-delay:-2s}
+  .hero h1{position:relative;margin:0;font-size:clamp(40px,4.7vw,66px);letter-spacing:-.04em;line-height:.95;text-align:left}
+  .hero .acc{background:linear-gradient(95deg,#c3123f,#f42250);-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero h1 em{font-style:normal}
-  .hero .sub{text-align:center;font:500 clamp(19px,2.4vw,28px)/1.2 var(--display);letter-spacing:-.015em;margin:22px auto 0;max-width:760px}
-  .count{display:flex;gap:12px;justify-content:center;margin-top:30px}
-  .count div{background:#fff;box-shadow:0 18px 36px -24px rgba(244,34,80,.5);border:1.5px solid rgba(2,5,18,.08);border-radius:20px;min-width:92px;padding:14px 10px;text-align:center}
-  .count b{display:block;font:500 40px/1 var(--display)}
+  .hero .sub{text-align:left;font:500 clamp(18px,1.8vw,24px)/1.25 var(--display);letter-spacing:-.015em;margin:16px 0 0;max-width:560px}
+  .count{display:flex;gap:8px;justify-content:flex-start;margin-top:0}
+  .count div{background:#fff;box-shadow:0 18px 36px -24px rgba(244,34,80,.5);border:1.5px solid rgba(2,5,18,.08);border-radius:20px;min-width:0;padding:8px 12px;display:flex;align-items:baseline;gap:6px;text-align:center}
+  .count b{display:block;font:500 24px/1 var(--display)}
   .count i{font-style:normal;font-size:12px;opacity:.85}
-  .count-note{text-align:center;font-size:14px;margin-top:10px;opacity:.85}
+  .count-note{text-align:left;font-size:13px;margin:18px 0 8px;opacity:.9}
 
   /* ---------- FORM CARD ---------- */
   .formcard{background:#fff;color:var(--ink);border-radius:30px;padding:30px 30px 18px;box-shadow:0 40px 90px -34px rgba(244,34,80,.5),0 0 0 1.5px rgba(2,5,18,.07)}
   .formcard h3{font-size:26px;margin-bottom:4px}
   .formcard p{font-size:15px;color:#5a5d6c;margin-bottom:12px}
-  .formpull{margin:-96px auto 0;max-width:540px;position:relative;z-index:5}
 
   /* ---------- TICKER ---------- */
-  .ticker{background:#fff;border-block:1.5px solid var(--line);padding:18px 0;overflow:hidden;margin-top:56px}
+  .ticker{background:#fff;border-block:1.5px solid var(--line);padding:18px 0;overflow:hidden;margin-top:40px}
   .ticker .track{display:flex;width:max-content;gap:34px;animation:marq 38s linear infinite;font:500 15px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
   .ticker span{display:inline-flex;align-items:center;gap:34px}
   .ticker svg{width:14px;height:14px;fill:var(--red);stroke:none}
@@ -117,6 +127,8 @@
   .billboard .stat{position:absolute;z-index:4;background:rgba(5,3,12,.78);backdrop-filter:blur(8px);border:1.5px solid var(--line);border-radius:18px;padding:12px 16px}
   .billboard .stat b{display:block;font:500 clamp(24px,3vw,36px)/1 var(--display);letter-spacing:-.03em}
   .billboard .stat span{font-size:13px;opacity:.85}
+  .billboard .stat b{background:none;-webkit-text-fill-color:#fff;color:#fff}
+  .billboard .stat span{color:#fff;opacity:1;margin:0}
   .billboard .s1{right:20px;top:20px}.billboard .s2{left:20px;bottom:24px}
   .posgrid h2{font-size:clamp(34px,4.6vw,58px)}
   .posgrid p{color:var(--muted);font-size:18px;margin-top:18px;max-width:520px}
@@ -166,22 +178,23 @@
   .blueprint{background:radial-gradient(70% 50% at 50% 0%,#ffe6f4 0%,#fbf9fc 70%)}
   .bp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
   .arrows{display:flex;gap:12px}
+  .bp-nav{display:flex;justify-content:center;margin-top:6px;position:relative}
   .arrows button{width:58px;height:58px;border-radius:50%;border:1.5px solid rgba(2,5,18,.2);background:#fff;color:var(--ink);box-shadow:0 12px 24px -14px rgba(2,5,18,.35);font-size:24px;cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .2s var(--ease)}
   .arrows button:hover{background:var(--red);color:#fff;border-color:var(--red);transform:scale(1.06)}
   .scroller{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:46px max(4vw,calc((100vw - var(--maxw))/2)) 30px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .scroller::-webkit-scrollbar{display:none}
-  .day{flex:none;width:min(340px,80vw);scroll-snap-align:center;border-radius:32px;background:#fff;border:1.5px solid var(--line);box-shadow:0 30px 60px -36px rgba(128,42,216,.45);position:relative;overflow:hidden;padding:0 22px 24px}
+  .day{flex:none;display:flex;flex-direction:column;width:min(340px,80vw);scroll-snap-align:center;border-radius:32px;background:#fff;border:1.5px solid var(--line);box-shadow:0 30px 60px -36px rgba(128,42,216,.45);position:relative;overflow:hidden;padding:0 22px 24px}
   .day::before{content:"";position:absolute;left:0;right:0;top:0;height:230px;background:var(--glow);opacity:.45;-webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
   .day>*{position:relative}
   .day .eyebrow{text-align:center;font:500 22px var(--display);padding-top:22px}
   .day .num{text-align:center;font:500 150px/.95 var(--display);letter-spacing:-.06em;margin:4px 0 6px;background:var(--numg);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 28px var(--sh))}
-  .day h3{text-align:center;font-size:25px;line-height:1.05;margin-bottom:10px}
+  .day h3{text-align:center;font-size:25px;line-height:1.05;margin-bottom:10px;min-height:54px;display:flex;align-items:center;justify-content:center}
   .day .when{display:flex;justify-content:center;gap:16px;font-size:13px;color:var(--muted);margin-bottom:18px}
   .day .when span{display:inline-flex;gap:6px;align-items:center}
-  .day ul{list-style:none;display:grid;gap:10px}
+  .day ul{list-style:none;display:grid;gap:10px;grid-auto-rows:84px}
   .day li{display:flex;gap:14px;align-items:center;background:#f6f4fb;border:1.5px solid rgba(2,5,18,.06);border-radius:18px;padding:13px 14px;font-size:14.5px;line-height:1.3}
   .day li .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:19px;background:var(--grad-flame-h);color:#fff;flex:none}
-  .day .out{margin-top:14px;text-align:center;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#7a0f2c;background:linear-gradient(97deg,rgba(244,34,80,.1),rgba(255,73,32,.1));border:1.5px solid rgba(244,34,80,.35);border-radius:99px;padding:10px 12px}
+  .day .out{margin-top:auto;min-height:62px;display:grid;place-items:center;text-align:center;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#7a0f2c;background:linear-gradient(97deg,rgba(244,34,80,.1),rgba(255,73,32,.1));border:1.5px solid rgba(244,34,80,.35);border-radius:99px;padding:10px 12px}
   .day:nth-child(1){--glow:radial-gradient(90% 100% at 50% 0%,#ff76d6,transparent 70%);--numg:linear-gradient(180deg,#ff76d6,#f42250);--sh:rgba(255,118,214,.35)}
   .day:nth-child(2){--glow:radial-gradient(90% 100% at 50% 0%,#ba76ff,transparent 70%);--numg:linear-gradient(180deg,#ba76ff,#802ad8);--sh:rgba(186,118,255,.35)}
   .day:nth-child(3){--glow:radial-gradient(90% 100% at 50% 0%,#ff4920,transparent 70%);--numg:linear-gradient(180deg,#ffb347,#ff4920);--sh:rgba(255,73,32,.3)}
@@ -308,11 +321,22 @@
 
   @media(max-width:980px){
     .pad{padding:72px 0}
-    .hero{border-radius:0 0 32px 32px;padding-bottom:120px}
-    .host{width:min(330px,78vw)}
-    .hero h1{margin-top:-120px}
+    .hero{border-radius:0 0 32px 32px;padding:14px 0 48px}
+    .logo-lockup img{height:48px}
+    .hero-grid{grid-template-columns:36% 1fr;grid-template-areas:"host pill" "host title" "form form" "sub sub" "count count";gap:10px 14px;margin-top:12px;align-items:center}
+    .hero-left{display:contents}
     .chip{display:none}
-    .formpull{margin-top:-70px}
+    .livepill .lg{display:none}
+    .livepill{grid-area:pill;align-self:end;margin:0;font-size:10px;letter-spacing:.06em;padding:5px 10px;justify-self:start}
+    .hero h1{grid-area:title;align-self:start;font-size:clamp(25px,7.4vw,36px)}
+    .host{grid-area:host;width:100%;height:150px;margin:0}
+    .hero-right{grid-area:form}
+    .hero-right .formcard{max-width:none;margin:0}
+    .hero .sub{grid-area:sub;font-size:17px;margin:8px 0 0}
+    .countwrap{grid-area:count}
+    .count{justify-content:center}.count-note{text-align:center;margin:6px 0}
+    .strip .more,.strip a{display:none}
+    .arch.a1{top:40px}.arch.a2{top:120px}.arch.a3{top:200px}
     .posgrid,.band-grid,.final-grid{grid-template-columns:1fr;gap:40px}
     .stages,.split,.vsgrid{grid-template-columns:1fr}
     .stage{min-height:0}
@@ -320,7 +344,7 @@
     .phones{margin-top:44px;transform:scale(.82);transform-origin:top center;margin-bottom:-110px}
     .floatnote{display:none}
     .final{border-radius:32px 32px 0 0;margin-top:-32px;padding-top:104px}
-    .count div{min-width:70px}.count b{font-size:30px}
+    .count div{padding:6px 10px}.count b{font-size:20px}
     .co-card{grid-template-columns:38% 1fr;width:min(86vw,380px)}
     .ticket{padding:8px 22px 28px}
     .band{padding:72px 0}
@@ -328,7 +352,6 @@
   }
   @media(max-width:520px){
     .phones{transform:scale(.62);margin-bottom:-210px}
-    .strip a{display:block;margin:4px 0 0}
     .then-now{grid-template-columns:1fr}
     .day .num{font-size:128px}
     .ticket .r{font-size:16px}
@@ -367,7 +390,7 @@
 <symbol id="i-diamond" viewBox="0 0 24 24"><path d="M12 1l4 11-4 11-4-11z" fill="currentColor" stroke="none"/></symbol>
 </defs></svg>
 
-<div class="strip">Free 5-day live challenge &middot; Mon 16 to Fri 20 Nov &middot; Live at 12:00 ET <a href="#register">Save my free seat &darr;</a></div>
+<div class="stripwrap"><div class="strip">Free 5-day live challenge &middot; Mon 16 to Fri 20 Nov<span class="more"> &middot; Live at 12:00 ET</span> <a href="#register">Save my free seat &darr;</a></div></div>
 
 <!-- ================= HERO STAGE ================= -->
 <header class="hero">
@@ -378,46 +401,40 @@
     <i class="beam" style="--x:60%;--r:8deg;--c:#ff4920;--t:9s;--d:-1s"></i>
     <i class="beam" style="--x:73%;--r:20deg;--c:#ff76d6;--t:12s;--d:-5s"></i>
     <i class="beam" style="--x:88%;--r:34deg;--c:#ba76ff;--t:10s;--d:-3s"></i>
-    <i class="lamp" style="--x:12%;--c:#ba76ff"></i><i class="lamp" style="--x:27%;--c:#ff76d6"></i><i class="lamp" style="--x:40%;--c:#f42250"></i>
-    <i class="lamp" style="--x:60%;--c:#ff4920"></i><i class="lamp" style="--x:73%;--c:#ff76d6"></i><i class="lamp" style="--x:88%;--c:#ba76ff"></i>
   </div>
-  <svg class="hex" viewBox="0 0 1200 700" aria-hidden="true">
-    <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff76d6"/><stop offset=".5" stop-color="#f42250"/><stop offset="1" stop-color="#ff4920"/></linearGradient>
-    <filter id="hglow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-    <g fill="none" stroke="url(#hg)" stroke-width="3" filter="url(#hglow)" stroke-linejoin="round">
-      <polygon points="830,350 715,549 485,549 370,350 485,151 715,151" opacity=".95"/>
-      <polygon points="930,350 765,636 435,636 270,350 435,64 765,64" opacity=".62"/>
-      <polygon points="1030,350 815,723 385,723 170,350 385,-23 815,-23" opacity=".38"/>
-      <polygon points="1130,350 865,810 335,810 70,350 335,-110 865,-110" opacity=".2"/>
-    </g>
-  </svg>
+  <div class="arches" aria-hidden="true"><i class="arch a1"></i><i class="arch a2"></i><i class="arch a3"></i></div>
   <div class="floor" aria-hidden="true"></div><div class="dust" aria-hidden="true"></div>
 
   <div class="wrap">
     <div class="logo-lockup"><img src="/media/ptp/ptp-logo-on-light.svg" alt="Passion to Profit: 5-day live challenge" width="640" height="97"></div>
-    <div class="livepill"><i></i>Live virtual event &middot; Nov 16 to 20</div>
-    <div class="host">
-      <img src="/media/ptp/matt-cutout.png" alt="Matt Bellmann, founder of Passion.io, your host" width="891" height="1024" fetchpriority="high">
-      <div class="chip a"><span class="ic"><svg class="i"><use href="#i-users"/></svg></span><span><b>15,000+</b>business owners</span></div>
-      <div class="chip b"><span class="ic"><svg class="i"><use href="#i-phone"/></svg></span><span><b>3M+</b>people in their apps</span></div>
-      <div class="chip c"><span class="ic"><svg class="i"><use href="#i-video"/></svg></span><span><b>12:00 ET</b>live, with replays</span></div>
-    </div>
-    <h1>Stop trading your time <span class="acc">for money.</span></h1>
-    <p class="sub">Sell what you know, not your hours. Five days live with Matt and the Passion team.</p>
-    <div class="count" aria-label="Time until the challenge starts">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="livepill"><i></i><span class="lg">Live virtual event &middot;&nbsp;</span>Nov 16 to 20</div>
+        <h1>Stop trading your time <span class="acc">for money.</span></h1>
+        <p class="sub">Sell what you know, not your hours. Five days live with Matt and the Passion team.</p>
+        <div class="countwrap">
+          <p class="count-note">Day 1 goes live in</p>
+          <div class="count" aria-label="Time until the challenge starts">
       <div><b id="cd-d">--</b><i>days</i></div><div><b id="cd-h">--</b><i>hours</i></div><div><b id="cd-m">--</b><i>mins</i></div><div><b id="cd-s">--</b><i>secs</i></div>
     </div>
-    <p class="count-note">until Day 1 goes live</p>
-  </div>
-</header>
-
-<div class="wrap formpull" id="register">
-  <div class="formcard">
+        </div>
+        <div class="host">
+          <div class="pic"><img src="/media/ptp/matt-cutout.png" alt="Matt Bellmann, founder of Passion.io, your host" width="891" height="1024" fetchpriority="high"></div>
+          <div class="chip a"><span class="ic"><svg class="i"><use href="#i-users"/></svg></span><span><b>15,000+</b>business owners</span></div>
+          <div class="chip b"><span class="ic"><svg class="i"><use href="#i-phone"/></svg></span><span><b>3M+</b>people in their apps</span></div>
+        </div>
+      </div>
+      <div class="hero-right" id="register">
+        <div class="formcard">
     <h3>Save your free seat</h3>
     <p>Join Passion to Profit, free.</p>
     <div class="hsf"></div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</header>
+
 
 <!-- ================= TICKER ================= -->
 <div class="ticker" aria-hidden="true"><div class="track">
@@ -507,7 +524,6 @@
   <div class="wrap bp-head">
     <div><h2>Your 5-day <span class="acc">Passion to Profit</span> blueprint</h2>
     <p class="lead">Each day ends with something you can use, plus homework in the app so you keep moving.</p></div>
-    <div class="arrows"><button type="button" id="bp-prev" aria-label="Previous day"><svg class="i"><use href="#i-arrow-l"/></svg></button><button type="button" id="bp-next" aria-label="Next day"><svg class="i"><use href="#i-arrow-r"/></svg></button></div>
   </div>
   <div class="scroller" id="bp">
     <article class="day">
@@ -566,6 +582,7 @@
       <div class="out">You leave with: a plan to add a zero</div>
     </article>
   </div>
+  <div class="bp-nav"><div class="arrows"><button type="button" id="bp-prev" aria-label="Previous day"><svg class="i"><use href="#i-arrow-l"/></svg></button><button type="button" id="bp-next" aria-label="Next day"><svg class="i"><use href="#i-arrow-r"/></svg></button></div></div>
 </section>
 
 <!-- ================= APP MOCKUPS ================= -->
